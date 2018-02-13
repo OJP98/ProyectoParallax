@@ -1,0 +1,19 @@
+set_delay(0);
+
+def turn_right():
+    repeat(turn_left, 3)
+
+def seguir_pared():
+    if right_is_clear():
+        turn_right()
+        move()
+    elif front_is_clear():
+        move()
+    else: turn_left()
+
+x = True;
+
+while x:
+    seguir_pared();
+
+turn_off()
