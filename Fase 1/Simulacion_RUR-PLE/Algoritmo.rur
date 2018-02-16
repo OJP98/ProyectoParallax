@@ -1,19 +1,30 @@
-set_delay(0);
+giros = 0;
 
 def turn_right():
     repeat(turn_left, 3)
 
 def seguir_pared():
-    if right_is_clear():
+    global giros
+    
+    if giros == 7:
+        while front_is_clear():
+            move()
+        else:
+            turn_left()
+        giros = 0;
+    elif right_is_clear():
         turn_right()
         move()
+        giros = giros+1
     elif front_is_clear():
         move()
-    else: turn_left()
+    else:
+        turn_left()
+        giros = 0
 
-x = True;
 
-while x:
-    seguir_pared();
+while not on_beeper():
+    seguir_pared()
 
 turn_off()
+
